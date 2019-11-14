@@ -441,7 +441,7 @@ foreach var in attending_school_yn enrolled_training_yn ever_partner_yn currentl
                 heard_rhythm heard_withdrawal heard_other heard_injectables heard_diaphragm heard_gel heard_beads heard_LAM ///
                current_user partner_know partner_know_nr implant_protect  ///
                fp_side_effects fp_side_effects_instructions fp_told_other_methods_cc ///
-               fp_told_future_switch implant_removed_attempt fp_ever_user emergency_12mo_yn ///
+               fp_told_future_switch implant_removed_attempt fp_ever_user emergency_12mo_yn condom_12mo_yn ///
                visited_by_health_worker visited_fac_none visited_fac_some facility_fp_discussion ///
                have_insurance_yn first_sex_avoid_preg_yn first_sex_method_want last_time_sex_used_fp_yn ///
                flw_willing flw_number_yn sterlization_permanent_inform {
