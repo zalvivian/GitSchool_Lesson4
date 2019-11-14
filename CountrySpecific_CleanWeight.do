@@ -65,8 +65,8 @@ replace doi=manual_date if manual_date!="." & manual_date!=""
 split doi, gen(doisplit_)
 capture drop wrongdate
 *If survey spans across 2 years add | doisplit_3!=year2
-gen wrongdate=1 if doisplit_3!="2019"
-replace wrongdate=1 if doisplit_1!="Sep" & doisplit_1!="Oct" & doisplit_1!="Nov" & doisplit_1!=""
+gen wrongdate=1 if doisplit_3!="2020"
+replace wrongdate=1 if doisplit_1!="Mar" & doisplit_1!="Apr" & doisplit_1!="May" & doisplit_1!=""
 
 gen doi_corrected=doi
 replace doi_corrected=SubmissionDate if wrongdate==1 & SubmissionDate!=""
@@ -74,8 +74,7 @@ drop doisplit*
 
 *Assets
 replace assets=" "+assets+" "
-foreach var in electricity radio tv mobile landline refrigerator cable_tv electric_gen ac computer elec_iron ///
-		fan watch bicycle motorcycle animalcart car canoe boatmotor {
+foreach var in electricity radio tv mobile landline refrigerator tv_antenna cabel_subscription wash_mach gas_elect_stov imp_stov DVD_CD air_con computer internet wall_clock charruees bicycle motorcycle cart_animal canoe tractor car boatmotor {
 	gen `var'=0 if assets!=""
 	replace `var'=1 if strpos(assets, " `var' ")
 	label val `var' o2s_binary_label
@@ -85,27 +84,24 @@ replace assets=strtrim(assets)
 
 *Roof/Wall/Floor
 **Numeric codes come from country specific DHS questionnaire 
-label define floor_list 11 earth 12 dung 21 planks 22 palm_bamboo 31 parquet 32 vinyl_asphalt 33 ceramic_tiles 34 cement ///
-	35 carpet 96 other -99 "-99"
+label define floor_list 11 soil_sand 12 cow_dung 21 wood_boards 22 palm_bamboo 31 parquet 32 vinyl_asphal 33 tile 34 cement 35 carpet 96 other -99 "-99"
 encode floor, gen(floorv2) lab(floor_list)
 
-label define roof_list 11 no_roof 12 thatched  21 rustic_mat 22 palm_bamboo 23 wood_planks 24 cardboard ///
-	31 metal 32 wood 34 ceramic_tiles 35 cement 36 shingles 37 asbestos 96 other -99 "-99"
+label define roof_list 11 no_roof 12 thatch_palm 13 earth_mottes 21 mat 22 palm_bamboo 23 wood_planks 24 cardboard 31 sheet_metal 32 wood 33 zinc_fiber 34 tile 35 cement 36 shingles 96 other -99 "-99"
 encode roof, gen(roofv2) lab(roof_list)	
 
-label define walls_list 11 no_walls 12 cane_palm 13 dirt 21 bamboo_mud 22 stone_mud 24 plywood 25 cardboard ///
-	26 reused_wood 31 cement 32 stone_lime 33 bricks 34 cement_blocks 36 wood_planks_shingles 96 other -99 "-99"
+label define walls_list 11 no_wall 12 bamboo_palm 13 earth 21 bamboo_mud 22 stones_mud 23 adobe_uncovered 24 plywood 25 cardboard 26 recovered_wood 31 cement 32 stones_cement 33 bricks 34 cement_blocks 35 adobe_covered 36 board_shingles 96 other -99 "-99"
 encode walls, gen(wallsv2) lab(walls_list)
 
 *Language 
-label define language_list 1 english 2 hausa 3 igbo 4 yoruba 5 pidgin 96 other, replace
+label define language_list 1 english 2 french 3 arabic 4 baoule 5 senoufo 6 yacouba 7 agni 8 attie 9 guere 10 bete 11 dioula 12 abbey 13 mahou 14 wobe 15 lobi 96 other, replace
 encode survey_language, gen(survey_languagev2) lab(language_list)
 label var survey_languagev2 "Language of household interview"
 
 *Religion
 capture confirm var religion
 if _rc==0 {
-	label define religion_list 1 catholic 2 other_christian 3 islam 4 traditionalist 96 other -77 "-77" -99 "-99"		
+	label define religion_list 1 muslim 2 catholic 3 methodist 4 evangelical 5 other_christian 6 animist 96 other -77 "-77" -99 "-99"		
 	encode religion, gen(religionv2) lab(religion_list)
 	sort metainstanceID religionv2 
 	bysort metainstanceID: replace religionv2 =religionv2[_n-1] if religionv2==.
@@ -115,8 +111,7 @@ if _rc==0 {
 *Ethnicity
 capture confirm var ethnicity
 if _rc==0 {
-	label define ethnicity_list 1 afo_gwandara 2 alago 3 eggon 4 fufulde 5 hausa 6 igbo 7 izon_ijaw 8 katab_tyap ///
-	9 mada 10 mambila 11 mumuye 12 ogoni 13 rundawa 14 wurkum 15 yoruba 96 other -99 "-99"
+	label define ethnicity_list 1 akan 2 mande_du_sud 3 mande_du_nord 4 gur 5 krou 6 other_ic 7 other_non_ic -99 "-99"
 	encode ethnicity, gen(ethnicityv2) lab(ethnicity_list)
 	sort metainstanceID ethnicityv2 
 	bysort metainstanceID: replace ethnicityv2=ethnicityv2[_n-1] if ethnicityv2==.
@@ -130,8 +125,8 @@ if _rc==0 {
 *Year and month of data collection.  
 
 *If survey spans across 2 years add | thisyear!=year2
-gen FQwrongdate=1 if thisyear!="2019" & thisyear!=""
-replace FQwrongdate=1 if thismonth!="9" & thismonth!="10" & thismonth!="11" & thismonth!=""
+gen FQwrongdate=1 if thisyear!="2020" & thisyear!=""
+replace FQwrongdate=1 if thismonth!="3" & thismonth!="4" & thismonth!="5" & thismonth!=""
 
 gen FQdoi=FQsystem_date
 replace FQdoi = FQmanual_date if FQmanual_date!="." & FQmanual_date!=""
@@ -142,7 +137,7 @@ replace FQdoi_corrected=FQSubmissionDate if FQwrongdate==1 & FQSubmissionDate!="
 *Migration Variables
 capture confirm var country_lived
 if _rc==0 {
-	label define country_lived_list 1 "kenya" 
+	label define country_lived_list 1 "cotedivoire" 
 	encode country_lived, gen(country_livedv2) lab(country_lived_list)
 	}
 	
@@ -153,7 +148,7 @@ if _rc==0 {
 	}
 
 *Education Categories
-label def school_list 0 never 1 primary 2 secondary 3 higher -99 "-99"
+label def school_list 0 never 1 primary 2 secondary 3 tertiary -99 "-99", replace
 encode school, gen(schoolv2) lab(school_list)
 
 *Methods lists
