@@ -30,14 +30,14 @@ set maxvar 30000
 *******************************************************************************
 *BEFORE USE THE FOLLOWING NEED TO BE UPDATED:
 *Country/Round/Abbreviations
-global Country KE	 
+global Country BF	 
 global Phase Phase1
 global phase 1
-global CCPX KEP1
+global CCPX BFP1
 
 *Year of the Survey
-local SurveyYear 2018 
-local SYShort 18 
+local SurveyYear 2019 
+local SYShort 19 
 
 *First and last years asked about in the contraceptive calendar
 global year1 2017
@@ -45,9 +45,9 @@ global year3 2019
 
 ******CSV FILE NAMES ****
 *HHQ CSV File name 
-global HHQcsv KEP1_Household_Questionnaire_v3
+global HHQcsv BFP1_Household_Questionnaire_v3
 *FQ CSV File name
-global FQcsv KEP1_Female_Questionnaire_v3
+global FQcsv BFP1_Female_Questionnaire_v3
 
 ***If the REs used a second version of the form, update these 
 *If they did not use a second version, DONT UPDATE 
@@ -63,17 +63,17 @@ local module2
 local module3
 
 **** GEOGRAPHIC IDENTIFIERS ****
-global GeoID "level1 level2 level3 level4 EA"
+global GeoID "level1 level2 level3 EA"
 
 *Geographic Identifier lower than EA to household
 global GeoID_SH "structure household"
 
 *Rename level1 variable to the geographic highest level, level2 second level
 *done in the final data cleaning before dropping other geographic identifiers
-global level1name county
-global level2name district
-global level3name zone
-global level4name location
+global level1name level1
+global level2name level2
+global level3name level3
+*global level4name location
 
 *Number of households selected per EA
 global EAtake=35
@@ -81,14 +81,14 @@ global EAtake=35
 **** DIRECTORIES****
 
 **Global directory for the dropbox where the csv files are originally stored
-global csvdir "C:\Users\annro\PMA\Data_Not_Shared\Kenya\Test_KEP1"
+global csvdir "/Users/ealarson/Dropbox (Gates Institute)/5 Burkina Faso/PMADataManagement_Burkina/Phase/Data/CSV_Files"
 
 **Create a global data directory - NEVER DROPBOX
-global datadir "C:\Users\annro\PMA\Data_Not_Shared\Kenya\Test_KEP1"
+global datadir "/Users/ealarson/Documents/Burkina Faso/Data_NotShared/Phase1/HHQFQ"
 
 **Create a global do file directory
 **Should be your GitKraken working directory for the HHQFQ_Cleaning-Monitoring Repository
-global dofiledir "C:\Users\annro\PMA\GitKraken\PMA-DM\HHQFQ_Cleaning-Monitoring"
+global dofiledir "/Users/ealarson/Documents/PMA/GiHub_PMA-BF/HHQFQ_Cleaning-Monitoring"
 
 *******************************************************************************************
  			******* Stop Updating Macros Here *******

@@ -250,13 +250,6 @@ rename your_name RE
 replace RE=name_typed if your_name_check==0 | your_name_check==.
 label var RE "RE"
 
-*Livestock
-foreach var of varlist *_owned {
-	local stubs: subinstr local var "_owned" ""
-	label var `var' "Total number of `stubs' owned"
-	destring `var', replace
-	}
-
 **Check any complete duplicates, duplicates of metainstanceid, and duplicates of structure and household numbers
 duplicates report
 duplicates report metainstanceID

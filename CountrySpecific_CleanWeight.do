@@ -97,6 +97,13 @@ label define walls_list 11 no_walls 12 cane_palm 13 dirt 21 bamboo_mud 22 stone_
 	26 reused_wood 31 cement 32 stone_lime 33 bricks 34 cement_blocks 36 wood_planks_shingles 96 other -99 "-99"
 encode walls, gen(wallsv2) lab(walls_list)
 
+*Livestock
+foreach x in cow_bulls horses goats sheep pigs fowl other {
+	capture rename owned_`x'* `x'_owned
+	capture label var `x'_owned "Total number of `x' owned"
+	destring `x'_owned, replace
+	}
+
 *Language 
 label define language_list 1 english 2 hausa 3 igbo 4 yoruba 5 pidgin 96 other, replace
 encode survey_language, gen(survey_languagev2) lab(language_list)
