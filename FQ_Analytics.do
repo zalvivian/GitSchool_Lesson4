@@ -12,33 +12,33 @@ set maxvar 30000
 clear
 
 *Country-Phase macros
-local country KE
+local country CI
 local phase 1
-local CCPX KEP1
+local CCPX CIP1
 
 *Geo ID variables
-local Geo_ID level1 level2 level3 level4
+local Geo_ID level1 level2 level3 
 
 *Where the ODK files are saved for this survey
-global odkdir "C:\Users\annro\PMA\Data_Not_Shared\Kenya\Test_KEP1\Data"
+global odkdir "/Users/ealarson/PMA/PMA Cote d'Ivoire - General/ODK/Phase 1 forms"
 
 *Change odk file names here
-global FQodk KEP1-Female-Questionnaire-v3-jef
+global FQodk CIP1-Female-Questionnaire-v10-rmn
 
 *Where the Analytics .csv files are saved
-global analyticsdir "C:\Users\annro\PMA\Data_Not_Shared\Kenya\Test_KEP1\Data"
+global analyticsdir "/Users/ealarson/Dropbox (Gates Institute)/6 Cote d'Ivoire/PMADataManagement_CoteDIvore/Phase1/Data/Analytics"
 
 *Change analytic csv file names here
-global FQanalytics1 KEP1_Female_Questionnaire_v3_Analytics.csv
+global FQanalytics1 CIP1_Female_Questionnaire_v10_Analytics.csv
 
 *If there is 2nd version of analytics, use the older version below and add csv names
 global FQanalytics2 
 
 *Where the outputs from this .do file should be saved
-global datadir "C:\Users\annro\PMA\Data_Not_Shared\Kenya\Test_KEP1"
+global datadir "/Users/ealarson/PMA/PMA Cote d'Ivoire - General/ODK/Phase 1 forms"
 
 *Datadate of the ECRecode dataset
-global datadate 14Oct2019
+global datadate 15Nov2019
 
 **For the following macros the section name can be whatever you want it to be
 **The firstvar is usually the note that begins the section in the ODK
