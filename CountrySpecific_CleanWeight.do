@@ -93,6 +93,13 @@ encode roof, gen(roofv2) lab(roof_list)
 label define walls_list 11 no_wall 12 bamboo_palm 13 earth 21 bamboo_mud 22 stones_mud 23 adobe_uncovered 24 plywood 25 cardboard 26 recovered_wood 31 cement 32 stones_cement 33 bricks 34 cement_blocks 35 adobe_covered 36 board_shingles 96 other -99 "-99"
 encode walls, gen(wallsv2) lab(walls_list)
 
+*Livestock
+foreach x in cow_bulls horses goats sheep pigs fowl other {
+	capture rename owned_`x'* `x'_owned
+	capture label var `x'_owned "Total number of `x' owned"
+	destring `x'_owned, replace
+	}
+
 *Language 
 label define language_list 1 english 2 french 3 arabic 4 baoule 5 senoufo 6 yacouba 7 agni 8 attie 9 guere 10 bete 11 dioula 12 abbey 13 mahou 14 wobe 15 lobi 96 other, replace
 encode survey_language, gen(survey_languagev2) lab(language_list)
